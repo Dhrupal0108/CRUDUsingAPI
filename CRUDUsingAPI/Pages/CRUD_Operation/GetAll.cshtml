@@ -1,0 +1,56 @@
+﻿@page
+@model CRUDUsingAPI.Pages.CRUD_Operation.GetAllModel
+<span class="text-primary">
+    <a href="/Index" class=" text-decoration-none">Home</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+    <a href="/CRUD_Operation/GetAll" class=" text-decoration-none">User</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+</span>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">User Details</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="/CRUD_Operation/AddUser" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i>
+            </a>
+        </div>
+    </div><br /><br />
+    <table id="#tblData" class="table table-bordered table-striped table-light" style="width:100%">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Created On</th>
+                <th>Active Status</th>
+                <th>Contact No.</th>
+                <th>Last Login</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UserInfo)
+            {
+                <tr>
+                    <td>@item.userName</td>
+                    <td>@item.emailAddress</td>
+                    <td>@item.createdOn</td>
+                    <td>@item.isActivate</td>
+                    <td>@item.contactNo</td>
+                    <td>@item.lastLoginDate</td>
+                    <td>
+                        <div class="w-50 btn-group" role="group">
+                            <a asp-page="/CRUD_Operation/EditUser" asp-route-userId="@item.id" class="btn btn-warning mx-1">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-page="/CRUD_Operation/DeleteUser" asp-route-userId="@item.id" class="btn btn-danger mx-1">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
